@@ -75,6 +75,7 @@ export default {
       this.selectedColor = null;
       this.selectedStyle = null;
       this.selectedColors = [];
+      this.displayedCount = 12;
 
     }, 
     selectStyle(style) {
@@ -91,7 +92,7 @@ export default {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <div class="d-flex justify-content-center">
     <div class="d-flex flex-column mb-3 align-items-center" style="max-width: 600px;">
-      <button @click="resetAllSelected" class="btn btn-warning align-self-end">Reset</button>
+      <button @click="resetAllSelected" class="btn btn-danger align-self-end">Reset</button>
       <h2 class="align-self-start">ขนาด</h2>
       <div class="w-100 mb-3">
         <div class="btn-group w-100" role="group" aria-label="Button group">
@@ -109,7 +110,7 @@ export default {
         <div class="row row-cols-5 g-2 justify-content-start">
           <div v-for="(color, index) in customColors" :key="color" class="col">
             <button type="button" class="btn btn-circle w-100"
-              :style="{ backgroundColor: color, border: isSelected(color) ? '2px solid black' : '1px solid transparent', position: 'relative' }"
+              :style="{ color: 'black', backgroundColor: color, border: isSelected(color) ? '2px solid black' : '1px solid transparent', position: 'relative' }"
               @click="toggleColorSelect(color)">
               {{ colorNames[index] }}
               <span v-if="isSelected(color)" 
@@ -156,7 +157,8 @@ export default {
 
 
 
-<style scoped>
+<style>
+
 .btn-circle {
   aspect-ratio: 1 / 1;
   padding: 0;
