@@ -19,15 +19,15 @@
 
       <h2 class="align-self-start">โทนสี</h2>
       <div class="w-100 mb-3">
-        <div class="row row-cols-5 g-2">
-          <div v-for="(color, index) in customColors" :key="color" class="col" :class="{ 'offset-md-4': index === customColors.length - 1 }">
+        <div class="row row-cols-5 g-2 justify-content-start">
+          <div v-for="(color, index) in customColors" :key="color" class="col">
             <button 
               type="button" 
               class="btn btn-circle w-100"
               :style="{ backgroundColor: color }"
               @click="selectColor(color)"
             >
-              {{color}}
+              {{colorNames[index]}}
               <i v-if="selectedColor === color" class="bi bi-check"></i>
             </button>
           </div>
@@ -72,6 +72,12 @@ export default {
         '#33FFF6', '#F6FF33', '#FF33F6', '#F6A533', '#F63333',
         '#33F633', '#F6F633', '#F633A1', '#F6A533', '#A1F633',
         '#5733FF'
+      ],
+      colorNames: [
+      'Red-Orange', 'Green', 'Blue', 'Pink', 'Purple',
+      'Cyan', 'Yellow', 'Magenta', 'Light Orange', 'Light Red',
+      'Lime', 'Light Yellow', 'Light Pink', 'Dark Yellow', 'Dark Green',
+      'Dark Blue'
       ],
       cardData: [
         { imgSrc: '/vintage.jpg', title: 'Vintage' },
