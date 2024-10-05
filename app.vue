@@ -109,8 +109,10 @@ export default {
       <div class="w-100 mb-3">
         <div class="row row-cols-5 g-2 justify-content-start">
           <div v-for="(color, index) in customColors" :key="color" class="col">
-            <button type="button" class="btn btn-circle w-100"
-              :style="{ color: 'black', backgroundColor: color, position: 'relative', border: isSelected(color) ? '5px solid black' : '1px solid transparent' }"
+            <button type="button" 
+              class="btn btn-circle w-100"
+              v-bind:class= " isSelected(color) ? 'btn-circle-selected' : 'btn-circle-unselected'"
+              :style="{ backgroundColor: color }"
               @click="toggleColorSelect(color)">
               {{ colorNames[index] }}
               <span v-if="isSelected(color)"
@@ -126,21 +128,22 @@ export default {
       <h2 class="align-self-start">สไตล์ภาพ</h2>
       <div class="row row-cols-3 mx-auto g-3" id="card-container" role="group" aria-label="Button group">
         <div v-for="(card, index) in displayedCards" :key="index" class="col">
-          <div class="card h-100" :class="{ 'border-primary': selectedStyle === card.title }">
+          <div class="card h-100" :class="{ 'card-style-selected': selectedStyle === card.title }">
             <img :src="card.imgSrc" class="card-img-top" :alt="card.title">
             <div class="card-img-overlay d-flex flex-column justify-content-end">
-              <button class="btn fw-bold" :class="[selectedStyle === card.title ? 'btn-primary' : 'btn-outline-light']"
+              <button class="btn fw-bold" 
+                :class="[
+                  selectedStyle === card.title ? 'btn-primary' : 'btn-outline-light',
+                  selectedStyle === card.title ? 'btn-style-selected' : 'btn-style-unselected']"
                 :style="{
-                  color: selectedStyle === card.title ? 'white' : 'black',
                   backgroundColor: selectedStyle === card.title ? 'rgba(0, 123, 255, 1)' : 'rgba(255, 255, 255, 0.5)'
-                }" @click="selectStyle(card.title)">
+                }" 
+                @click="selectStyle(card.title)">
                 {{ card.title }}
                 <span v-if="selectedStyle === card.title"
                   class="position-absolute rounded-circle bg-primary d-flex align-items-center justify-content-center"
-                  style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30px; height: 30px;">
-                  <i class="bi bi-check position-absolute"
-                    style="top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; color: ADD8E6;">
-                  </i>
+                  style="top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; width: 30px; height: 30px;">
+                  <i class="bi bi-check" style="color: white;"></i>
                 </span>
               </button>
             </div>
@@ -165,12 +168,38 @@ export default {
   justify-content: center;
 }
 
-.btn-circle.selected {
+.btn-circle-selected {
+  color: black;
+  position:relative;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+  border: 4px solid black;
+}
+
+.btn-circle-unselected {
+  color: 'black';
+  position: 'relative';
+  border: 2px solid black;
 }
 
 .card-img-top {
   height: 200px;
   object-fit: cover;
 }
+
+.btn-style-selected {
+  color: white;
+  
+}
+
+.btn-style-unselected {
+  color: black;
+
+}
+
+.card-style-selected {
+
+  outline: 4px solid black;
+  box-shadow: 0 0 15px black;
+}
+
 </style>
