@@ -178,7 +178,7 @@ export default {
 .btn-circle-unselected {
   color: 'black';
   position: 'relative';
-  border: 2px solid black;
+  border: 0.5px solid black;
 }
 
 .card-img-top {
