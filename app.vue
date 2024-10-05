@@ -6,7 +6,7 @@ export default {
       shapes: [
         { value: 'vertical', label: 'แนวตั้ง', icon: 'grip-vertical' },
         { value: 'horizontal', label: 'แนวนอน', icon: 'grip-horizontal' },
-        { value: 'square', label: 'จตุรัส', icon: 'aspect-ratio-fill'}
+        { value: 'square', label: 'จตุรัส', icon: 'aspect-ratio-fill' }
       ],
       customColors: [
         '#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#A133FF',
@@ -62,7 +62,7 @@ export default {
     isSelected(color) {
       return this.selectedColors.includes(color);
     },
-    toggleColorSelect(color){
+    toggleColorSelect(color) {
       if (this.isSelected(color)) {
         this.selectedColors = this.selectedColors.filter(selectedColor => selectedColor !== color);
       } else {
@@ -77,7 +77,7 @@ export default {
       this.selectedColors = [];
       this.displayedCount = 12;
 
-    }, 
+    },
     selectStyle(style) {
       this.selectedStyle = style;
     },
@@ -110,13 +110,12 @@ export default {
         <div class="row row-cols-5 g-2 justify-content-start">
           <div v-for="(color, index) in customColors" :key="color" class="col">
             <button type="button" class="btn btn-circle w-100"
-              :style="{ color: 'black', backgroundColor: color, border: isSelected(color) ? '2px solid black' : '1px solid transparent', position: 'relative' }"
+              :style="{ color: 'black', backgroundColor: color, position: 'relative', border: isSelected(color) ? '5px solid black' : '1px solid transparent' }"
               @click="toggleColorSelect(color)">
               {{ colorNames[index] }}
-              <span v-if="isSelected(color)" 
-                    class="position-absolute rounded-circle bg-primary d-flex align-items-center justify-content-center"
-                    style="top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; width: 30px; height: 30px;"
-                    >
+              <span v-if="isSelected(color)"
+                class="position-absolute rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                style="top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; width: 30px; height: 30px;">
                 <i class="bi bi-check" style="color: white;"></i>
               </span>
             </button>
@@ -127,7 +126,7 @@ export default {
       <h2 class="align-self-start">สไตล์ภาพ</h2>
       <div class="row row-cols-3 mx-auto g-3" id="card-container" role="group" aria-label="Button group">
         <div v-for="(card, index) in displayedCards" :key="index" class="col">
-          <div class="card h-100" :class="{ 'border-primary': selectedStyle === card.title }" >
+          <div class="card h-100" :class="{ 'border-primary': selectedStyle === card.title }">
             <img :src="card.imgSrc" class="card-img-top" :alt="card.title">
             <div class="card-img-overlay d-flex flex-column justify-content-end">
               <button class="btn fw-bold" :class="[selectedStyle === card.title ? 'btn-primary' : 'btn-outline-light']"
@@ -138,10 +137,9 @@ export default {
                 {{ card.title }}
                 <span v-if="selectedStyle === card.title"
                   class="position-absolute rounded-circle bg-primary d-flex align-items-center justify-content-center"
-                  style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30px; height: 30px;"
-                  >
-                  <i class="bi bi-check position-absolute" 
-                  style="top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; color: ADD8E6;">
+                  style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30px; height: 30px;">
+                  <i class="bi bi-check position-absolute"
+                    style="top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; color: ADD8E6;">
                   </i>
                 </span>
               </button>
@@ -158,7 +156,6 @@ export default {
 
 
 <style>
-
 .btn-circle {
   aspect-ratio: 1 / 1;
   padding: 0;
@@ -176,5 +173,4 @@ export default {
   height: 200px;
   object-fit: cover;
 }
-
 </style>
