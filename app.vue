@@ -93,11 +93,12 @@ export default {
   <div class="d-flex justify-content-center">
     <div class="d-flex flex-column mb-3 align-items-center" style="max-width: 600px;">
       <button @click="resetAllSelected" class="btn btn-danger align-self-end">Reset</button>
+
       <h2 class="align-self-start">ขนาด</h2>
       <div class="w-100 mb-3">
-        <div class="btn-group w-100" role="group" aria-label="Button group">
+        <div class="btn-group w-100">
           <button v-for="shape in shapes" :key="shape.value" class="btn me-2"
-            :class="[selectedShape === shape.value ? 'btn-primary' : 'btn-outline-primary']"
+            :class="[selectedShape === shape.value ? 'btn-size-selected' : 'btn-outline-primary']"
             @click="selectShape(shape.value)">
             <i :class="`bi bi-${shape.icon} me-2`"></i>
             {{ shape.label }}
@@ -126,7 +127,7 @@ export default {
       </div>
 
       <h2 class="align-self-start">สไตล์ภาพ</h2>
-      <div class="row row-cols-3 mx-auto g-3" id="card-container" role="group" aria-label="Button group">
+      <div class="row row-cols-3 mx-auto g-3" id="card-container">
         <div v-for="(card, index) in displayedCards" :key="index" class="col">
           <div class="card h-100" :class="{ 'card-style-selected': selectedStyle === card.title }">
             <img :src="card.imgSrc" class="card-img-top" :alt="card.title">
@@ -159,6 +160,15 @@ export default {
 
 
 <style>
+.btn-size-selected {
+  color: black;
+  background-color: rgba(47, 139, 238, 0.856);
+}
+
+.btn-size-unselected {
+  color: black;
+}
+
 .btn-circle {
   aspect-ratio: 1 / 1;
   padding: 0;
@@ -181,11 +191,6 @@ export default {
   border: 0.5px solid black;
 }
 
-.card-img-top {
-  height: 200px;
-  object-fit: cover;
-}
-
 .btn-style-selected {
   color: white;
   
@@ -194,6 +199,11 @@ export default {
 .btn-style-unselected {
   color: black;
 
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
 }
 
 .card-style-selected {
